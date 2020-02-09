@@ -1,29 +1,35 @@
 //
-// Created by Lance Sander on 2/8/20.
+// Created by Lance Sander on 2/9/20.
 //
-
+#include <string>
+#include "LinkedType.h"
 #ifndef LAB2_LINKEDCHAR_H
 #define LAB2_LINKEDCHAR_H
+class LinkedChar : public LinkedType<std::string>{
+public:
+    LinkedChar(std::string s) {
+        std::cout << s << s.size() << std::endl;
 
-<ItemType>
-class LinkedChar {
-    virtual LinkedChar() = 0;
+    }
 
-    virtual LinkedChar(const std::string s) = 0;
+    void append(const LinkedTypeInterface &lt);
 
-    virtual int length() const = 0;
+    bool submatch(const LinkedTypeInterface &lt) const;
 
-    virtual int index(char ch) const = 0;
+    ~LinkedChar() override;
 
-    virtual void append(const LinkedChar& lc) = 0;
-
-    virtual bool submatch(const LinkedChar& lc) const = 0;
-
-    virtual ~LinkedChar() = 0;
 
 };
-
-
-
-
 #endif //LAB2_LINKEDCHAR_H
+
+void LinkedChar::append(const LinkedTypeInterface &lt) {
+
+}
+
+bool LinkedChar::submatch(const LinkedTypeInterface &lt) const {
+    return false;
+}
+
+LinkedChar::~LinkedChar() {
+
+}
