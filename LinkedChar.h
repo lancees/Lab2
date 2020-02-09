@@ -9,7 +9,6 @@ class LinkedChar : public LinkedType<std::string>{
 public:
     LinkedChar(std::string s) {
         std::cout << s << s.size() << std::endl;
-
     }
 
     void append(const LinkedTypeInterface &lt);
@@ -17,8 +16,6 @@ public:
     bool submatch(const LinkedTypeInterface &lt) const;
 
     ~LinkedChar() override;
-
-
 };
 #endif //LAB2_LINKEDCHAR_H
 
