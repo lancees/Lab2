@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include "LinkedType.h"
 #include "LinkedChar.h"
 
 class Node {
@@ -98,6 +100,10 @@ int main() {
     bag.display();
 
     LinkedChar ls =  LinkedChar("Lance is fun");
+    ls.testy();
 
+    char i[] = {'a', 'b', 'c'};
+    LinkedType<char> t = LinkedType<char>(i, 3);
+    t.testy();
     return 0;
 }

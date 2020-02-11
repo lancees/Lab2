@@ -10,8 +10,20 @@
 template<class ItemType>
 class LinkedType : public LinkedTypeInterface<ItemType>{
 public:
+    ItemType *items;
     LinkedType() {};
 
+    LinkedType(ItemType * i, int itemCount) {
+        items = i;
+        std::cout << "LinkedType " << items << *items << std::endl;
+        // std::cout << "Inside LinkedType " << sizeof(items)/sizeof(items[0]) << std::endl;
+       // for (int j=0; j<sizeof(items); j++)  {
+         //   std::cout << j << " - " << items[j] << " // " << *items << std::endl;
+       // }
+    }
+    void testy() {
+        std::cout << "testyLinkedType - " << items << *items << std::endl;
+    }
 
     int length() const {
         return 0;
@@ -20,6 +32,10 @@ public:
     int index(ItemType &f) const {
         return 0;
     }
+
+    void append(const LinkedTypeInterface<ItemType> &lt);
+
+    bool submatch(const LinkedTypeInterface<ItemType> &lt) const;
 
     void append(const LinkedType &lt) {
 
@@ -36,6 +52,16 @@ public:
 template<class ItemType>
 LinkedType<ItemType>::~LinkedType() {
 
+}
+
+template<class ItemType>
+void LinkedType<ItemType>::append(const LinkedTypeInterface<ItemType> &lt) {
+
+}
+
+template<class ItemType>
+bool LinkedType<ItemType>::submatch(const LinkedTypeInterface<ItemType> &lt) const {
+    return false;
 }
 
 
