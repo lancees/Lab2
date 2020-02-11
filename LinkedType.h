@@ -5,12 +5,14 @@
 #ifndef LAB2_LINKEDTYPE_H
 #define LAB2_LINKEDTYPE_H
 #include "LinkedTypeInterface.h"
-
+#include "Node.h"
 
 template<class ItemType>
 class LinkedType : public LinkedTypeInterface<ItemType>{
 public:
-    ItemType *items;
+    ItemType * items; // array implementation
+    Node<ItemType> * head;
+
     LinkedType() {};
 
     LinkedType(ItemType * i, int itemCount) {

@@ -2,46 +2,22 @@
 #include <string>
 #include "LinkedType.h"
 #include "LinkedChar.h"
-
-class Node {
-private:
-    int item;
-    Node * next;
-public:
-    Node(int item) : item(item), next(nullptr) {}
-
-    int getItem() const {
-        return item;
-    }
-
-    void setItem(int item) {
-        Node::item = item;
-    }
-
-    Node *getNext() const {
-        return next;
-    }
-
-    void setNext(Node* next) {
-        this->next = next;
-    }
-
-};
+#include "Node.h"
 
 class Bag {
 private:
-    Node * head;
+    Node<int> * head;
 public:
     Bag () : head(nullptr) {}
 
     void add (int item) {
-        Node * newNode = new Node(item);
+        Node<int>* newNode = new Node<int>(item);
         newNode->setNext(head);
         head = newNode;
     }
 
     void remove(int item) {
-        Node * currNode = head;
+        Node<int>* currNode = head;
 
         while(currNode != nullptr && currNode->getItem() != item) {
             currNode = currNode->getNext();
@@ -49,14 +25,14 @@ public:
         // remove item by removing first node
         if (currNode != nullptr) {
             currNode->setItem(head->getItem());
-            Node *deleteNode = head;
+            Node<int> *deleteNode = head;
             head = head->getNext();
             delete deleteNode;
         }
     }
 
     void display () const {
-        Node * currNode = head;
+        Node<int> * currNode = head;
 
         std::cout << "bag - " << head << " : ";
         while(currNode != nullptr) {
@@ -69,7 +45,7 @@ public:
     void clear() {
 
         while(head != nullptr) {
-            Node *deleteNode = head;
+            Node<int> *deleteNode = head;
             head = head->getNext();
             delete deleteNode;
             deleteNode = nullptr;
