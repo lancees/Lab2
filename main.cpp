@@ -55,25 +55,25 @@ public:
 };
 
 int main() {
-    Bag bag;
-    bag.display();
+    //Bag bag;
+    //bag.display();
 
-    bag.add(1);
-    bag.add(3);
-    bag.add(5);
-    bag.display();
+    //bag.add(1);
+    //bag.add(3);
+    //bag.add(5);
+    //bag.display();
 
-    bag.remove(3);
-    bag.display();
+    //bag.remove(3);
+    //bag.display();
 
-    bag.remove(1);
-    bag.display();
+    //bag.remove(1);
+    //bag.display();
 
-    bag.remove(3);
-    bag.display();
+    //bag.remove(3);
+    //bag.display();
 
-    bag.clear();
-    bag.display();
+    // bag.clear();
+    // bag.display();
 
     LinkedChar ls =  LinkedChar("Lance is fun");
     ls.testy();
@@ -81,5 +81,14 @@ int main() {
     char i[] = {'a', 'b', 'c'};
     LinkedType<char> t = LinkedType<char>(i, 3);
     t.testy();
+    t.loopNodes();
+    std::cout << "*****************" << std::endl;
+//    Node<char> someNode('a');
+//    Node<char> * someNode = new Node<char>('a');
+//    std::cout << "someNode - " << someNode->getItem() << std::endl;
+    // Node<int> n = 5;
+    // std::cout << n.getItem()  << std::endl;
+    // std::cout << n->getItem() << std::endl;
+    // std::cout << n->getNext()->getItem() << std::endl;
     return 0;
 }

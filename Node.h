@@ -10,9 +10,11 @@ private:
     ItemType item;
     Node * next;
 public:
+    Node() {}
     Node(ItemType item) : item(item), next(nullptr) {}
+    Node(ItemType item, Node * next) : item(item), next(next) {}
 
-    int getItem() const {
+    ItemType getItem() const {
         return item;
     }
 
