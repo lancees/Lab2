@@ -4,11 +4,12 @@
 
 #ifndef LAB2_LINKEDTYPEINTERFACE_H
 #define LAB2_LINKEDTYPEINTERFACE_H
-
+#include "Node.h"
 #include <cstddef>
 template<class ItemType>
 class LinkedTypeInterface {
 public:
+    Node<ItemType> * head;
     // virtual LinkedTypeInterface() = 0;
 
     // virtual LinkedTypeInterface(const ItemType& t) = 0;
@@ -20,8 +21,10 @@ public:
     virtual void append(const LinkedTypeInterface& lt) = 0;
 
     virtual bool submatch(const LinkedTypeInterface& lt) const = 0;
+    virtual void otherLink(ItemType * i, int icount) = 0;
+    virtual void print() const = 0;
 
-    virtual ~LinkedTypeInterface();
+    virtual ~LinkedTypeInterface()=0;
 
 };
 

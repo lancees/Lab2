@@ -76,12 +76,18 @@ int main() {
     // bag.display();
 
     LinkedChar ls =  LinkedChar("Lance is fun");
-    ls.testy();
+    ls.print();
 
-    char i[] = {'a', 'b', 'c'};
+    char i[] = {'F', 'u', 'n'};
     LinkedType<char> t = LinkedType<char>(i, 3);
-    t.testy();
-    t.loopNodes();
+    t.print();
+    char findMe = 'u';
+    t.index(findMe);
+    char o[] = {'o', 't', 'h', 'e', 'r'};
+    LinkedType<char> ol = LinkedType<char>(o, 5);
+    ol.print();
+    t.append(ol);
+    t.print();
     std::cout << "*****************" << std::endl;
 //    Node<char> someNode('a');
 //    Node<char> * someNode = new Node<char>('a');
