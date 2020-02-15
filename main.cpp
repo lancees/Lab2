@@ -76,14 +76,6 @@ Quit
             case 1:
                 std::cout << " (Show string)" << std::endl;
                 lc.print();
-//                std::cout << "> ";
-//                std::getline(std::cin, s);
-//                lc = LinkedChar(s);
-//                std::cout << " 1 Enter new string" <<  std::endl;
-//                std::cout << " 2 Length" << std::endl;
-//                std::cout << " 3 Index" << std::endl;
-//                std::cout << " 4 Append" << std::endl;
-//                std::cout << " 5 Submatch" << std::endl;
                 break;
             case 2: std::cout << " (Length)" << std::endl;
                 std::cout << " " << lc.length() << std::endl;
@@ -103,12 +95,13 @@ Quit
                 break;
             case 5:
                 std::cout << " (Enter submatch string)" << std::endl;
+                std::cout << ">";
                 std::getline(std::cin, submatchString);
                 submatchLC = LinkedChar(submatchString);
                 std::cout << lc.submatch(submatchLC) << std::endl;
                 break;
         }
     }
-    std::cout << "final exit" << std::endl;
+    std::cout << "welp see ya later" << std::endl;
     return 0;
 }

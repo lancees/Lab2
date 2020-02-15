@@ -111,7 +111,7 @@ bool LinkedType<ItemType>::submatch(const LinkedType<ItemType> &lt) const { // t
     return false;
 }
 template<class ItemType>
-void LinkedType<ItemType>::loadNodesFromItems() { // resets entire link to items
+void LinkedType<ItemType>::loadNodesFromItems() { // resets entire link to items. i think this is a memory link. what happens to prior leak?
     if (itemCount >0 ) {
         head = new Node<ItemType>(items[0]);
         Node<ItemType> * thisNode;
@@ -142,5 +142,7 @@ void LinkedType<ItemType>::otherLink(ItemType * i, int icount) {
 
 
 template<class ItemType>
-LinkedType<ItemType>::~LinkedType() {};
+LinkedType<ItemType>::~LinkedType() {
+    delete items;
+};
 #endif //LAB2_LINKEDTYPE_H

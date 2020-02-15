@@ -8,7 +8,7 @@
 class LinkedChar : public LinkedType<char>{
 public:
     LinkedChar() {}
-    LinkedChar(std::string s) ;
+    LinkedChar(const std::string s) ;
     void appendString(std::string s);
 
     ~LinkedChar();
@@ -24,8 +24,8 @@ LinkedChar::LinkedChar(std::string s) {
 
 void LinkedChar::appendString(std::string s) {
    LinkedChar * sl = new LinkedChar(s);
-   LinkedType<char>::append(*sl);
-   delete sl;
+   append(*sl);
+//   delete sl;
 
 }
 LinkedChar::~LinkedChar() {}
