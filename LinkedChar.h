@@ -9,6 +9,8 @@ class LinkedChar : public LinkedType<char>{
 public:
     LinkedChar() {}
     LinkedChar(const std::string s) ;
+    void append(const LinkedChar& lc);
+    bool submatch(const LinkedChar& lc) const;
     void appendString(std::string s);
 
     ~LinkedChar();
@@ -22,11 +24,15 @@ LinkedChar::LinkedChar(std::string s) {
     loadNodesFromItems();
 }
 
+void LinkedChar::append(const LinkedChar &lc) {
+    apppendItem(lc);
+}
+bool LinkedChar::submatch(const LinkedChar& lc) const {
+    return LinkedType<char>::submatchType(lc);
+}
 void LinkedChar::appendString(std::string s) {
-   LinkedChar * sl = new LinkedChar(s);
-   append(*sl);
-//   delete sl;
-
+    LinkedChar sl = LinkedChar(s);
+    apppendItem(sl);
 }
 LinkedChar::~LinkedChar() {}
 #endif //LAB2_LINKEDCHAR_H

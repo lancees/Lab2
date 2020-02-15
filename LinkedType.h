@@ -20,8 +20,8 @@ public:
 
     int length() const;
     int index(ItemType& f) const ;
-    void append(const LinkedType<ItemType> &lt);
-    bool submatch(const LinkedType<ItemType> &lt) const;
+    void apppendItem(const LinkedType<ItemType> &lt);
+    bool submatchType(const LinkedType<ItemType> &lt) const;
 
     void append(const LinkedTypeInterface<ItemType> &lt); // I don't know how to use these unless i have getters/setters and move attributes to interface
     bool submatch(const LinkedTypeInterface<ItemType> &lt) const;
@@ -33,7 +33,7 @@ public:
 };
 
 template<class ItemType>
-LinkedType<ItemType>::LinkedType(ItemType * i, int icount) { // create by array, array is only used to create nodes
+LinkedType<ItemType>::LinkedType(ItemType * i, int icount) { // array is only used to create nodes
     itemCount = icount;
     items = new ItemType[itemCount]; // wanted to practice arrays, allows construction with an array
     for (int j=0; j<itemCount; j++)  {
@@ -57,11 +57,11 @@ int LinkedType<ItemType>::index(ItemType& f) const {
         i++;
         if (thisNode->getItem() == f){
             index = i;
-            return index; // optional but terminates loop sooner
+            return index+1; // +1 for human readable position
         }
         thisNode = thisNode->getNext();
     }
-    return index;
+    return index; // did not find
 }
 
 
@@ -71,7 +71,7 @@ void LinkedType<ItemType>::append(const LinkedTypeInterface<ItemType> &lt)  {
 }
 
 template<class ItemType>
-void LinkedType<ItemType>::append(const LinkedType<ItemType> &lt)  { // does not append items
+void LinkedType<ItemType>::apppendItem(const LinkedType<ItemType> &lt)  { // does not apppend items
     Node<ItemType> * thisNode = head;
     while (thisNode->getNext() != nullptr) {
         thisNode = thisNode->getNext();
@@ -79,6 +79,7 @@ void LinkedType<ItemType>::append(const LinkedType<ItemType> &lt)  { // does not
     Node<ItemType> * newNode;
     Node<ItemType> * ltHead = lt.head;
     while (ltHead != nullptr) {
+        itemCount++;
         newNode = new Node<ItemType>(ltHead->getItem(), ltHead->getNext());
         thisNode->setNext(newNode);
         thisNode = thisNode->getNext();
@@ -92,26 +93,27 @@ bool LinkedType<ItemType>::submatch(const LinkedTypeInterface<ItemType> &lt) con
 }
 
 template<class ItemType>
-bool LinkedType<ItemType>::submatch(const LinkedType<ItemType> &lt) const { // this works but feel like it could be done better
-    Node<ItemType> * haystackNode = head;
-    while(haystackNode->getNext() != nullptr) {
-        Node<ItemType> * needleNode = lt.head;
-       if (haystackNode->getItem() == needleNode->getItem())  {
-           Node<ItemType> * substackNode = haystackNode;
-           while(needleNode->getNext() != nullptr && substackNode->getItem() == needleNode->getItem()) {
-                needleNode = needleNode->getNext();
-               substackNode = substackNode->getNext();
-           }
-           if (needleNode->getNext() == nullptr) {
-               return true;
-           }
-       }
-       haystackNode = haystackNode->getNext();
+bool LinkedType<ItemType>::submatchType(const LinkedType<ItemType> &lt) const {
+    if (lt.itemCount >0) {
+        Node<ItemType> *hayNode = head;
+        while (hayNode != nullptr) {
+            Node<ItemType> *strandNode = new Node<ItemType>(hayNode->getItem(),
+                                                            hayNode->getNext()); // is this a memory leak?
+            Node<ItemType> *nedNode = lt.head;
+            while (nedNode != nullptr && strandNode != nullptr && strandNode->getItem() == nedNode->getItem()) {
+                nedNode = nedNode->getNext();
+                strandNode = strandNode->getNext();
+            }
+            if (nedNode == nullptr) {
+                return true;
+            }
+            hayNode = hayNode->getNext();
+        }
     }
     return false;
 }
 template<class ItemType>
-void LinkedType<ItemType>::loadNodesFromItems() { // resets entire link to items. i think this is a memory link. what happens to prior leak?
+void LinkedType<ItemType>::loadNodesFromItems() { // resets entire link to items. i think this is a memory link?
     if (itemCount >0 ) {
         head = new Node<ItemType>(items[0]);
         Node<ItemType> * thisNode;
