@@ -1,81 +1,14 @@
 #include <iostream>
 #include <string>
-#include "LinkedType.h"
+//#include "LinkedType.h"
 #include "LinkedChar.h"
-#include "Node.h"
-
-class Bag {
-private:
-    Node<int> * head;
-public:
-    Bag () : head(nullptr) {}
-
-    void add (int item) {
-        Node<int>* newNode = new Node<int>(item);
-        newNode->setNext(head);
-        head = newNode;
-    }
-
-    void remove(int item) {
-        Node<int>* currNode = head;
-
-        while(currNode != nullptr && currNode->getItem() != item) {
-            currNode = currNode->getNext();
-        }
-        // remove item by removing first node
-        if (currNode != nullptr) {
-            currNode->setItem(head->getItem());
-            Node<int> *deleteNode = head;
-            head = head->getNext();
-            delete deleteNode;
-        }
-    }
-
-    void display () const {
-        Node<int> * currNode = head;
-
-        std::cout << "bag - " << head << " : ";
-        while(currNode != nullptr) {
-            std::cout << currNode << " - " << currNode->getItem() << " ";
-            currNode = currNode->getNext();
-        }
-        std::cout << std::endl;
-    }
-
-    void clear() {
-
-        while(head != nullptr) {
-            Node<int> *deleteNode = head;
-            head = head->getNext();
-            delete deleteNode;
-            deleteNode = nullptr;
-        }
-    }
-    ~Bag () { clear(); }
-};
 
 int main() {
-    //Bag bag;
-    //bag.display();
-
-    //bag.add(1);
-    //bag.add(3);
-    //bag.add(5);
-    //bag.display();
-
-    //bag.remove(3);
-    //bag.display();
-
-    //bag.remove(1);
-    //bag.display();
-
-    //bag.remove(3);
-    //bag.display();
-
-    // bag.clear();
-    // bag.display();
-
     LinkedChar ls =  LinkedChar("Lance is fun");
+    ls.print();
+    LinkedChar ls2 =  LinkedChar(" so join the party");
+    ls.append(ls2);
+    ls.appendString(". For old times!");
     ls.print();
 
     char i[] = {'F', 'u', 'n'};
@@ -85,16 +18,20 @@ int main() {
     t.index(findMe);
     char o[] = {'o', 't', 'h', 'e', 'r'};
     LinkedType<char> ol = LinkedType<char>(o, 5);
+    char y[] = {'z'};
+    LinkedType<char> yl = LinkedType<char>(y, 1);
     ol.print();
     t.append(ol);
     t.print();
-    std::cout << "*****************" << std::endl;
-//    Node<char> someNode('a');
-//    Node<char> * someNode = new Node<char>('a');
-//    std::cout << "someNode - " << someNode->getItem() << std::endl;
-    // Node<int> n = 5;
-    // std::cout << n.getItem()  << std::endl;
-    // std::cout << n->getItem() << std::endl;
-    // std::cout << n->getNext()->getItem() << std::endl;
+    std::cout << t.submatch(yl);
+    std::cout << t.submatch(ol);
+    char c1 = 'h';
+    char c2 = 'n';
+    char c3 = 'x';
+    std::cout << std::endl;
+    std::cout << "Index" << std::endl;
+    std::cout << t.index(c1);
+    std::cout << t.index(c2);
+    std::cout << t.index(c3);
     return 0;
 }

@@ -8,32 +8,27 @@
 class LinkedChar : public LinkedType<char>{
 public:
     LinkedChar() {}
-    LinkedChar(std::string s) {
-        itemCount = s.size();
-        items   = new char[itemCount];
-        for (int j = 0; j < itemCount; j++) {
-           items[j] = s[j] ;
-        }
-    }
-    void testy() {
-        // std::cout << "testyLC - " << items << std::endl;
-    }
-//    void append(const LinkedTypeInterface &lt);
-//
-//    bool submatch(const LinkedTypeInterface &lt) const;
+    LinkedChar(std::string s) ;
+    void appendString(std::string s);
 
     ~LinkedChar();
 };
+LinkedChar::LinkedChar(std::string s) {
+    itemCount = s.size();
+    items   = new char[itemCount];
+    for (int j = 0; j < itemCount; j++) {
+        items[j] = s[j] ;
+    }
+    loadNodesFromItems();
+}
+
+void LinkedChar::appendString(std::string s) {
+   LinkedChar * sl = new LinkedChar(s);
+   LinkedType<char>::append(*sl);
+   delete sl;
+
+}
+LinkedChar::~LinkedChar() {}
 #endif //LAB2_LINKEDCHAR_H
 
-//void LinkedChar::append(const LinkedTypeInterface &lt) {
-//
-//}
-//
-//bool LinkedChar::submatch(const LinkedTypeInterface &lt) const {
-//    return false;
-//}
-
-LinkedChar::~LinkedChar() {
-}
 
